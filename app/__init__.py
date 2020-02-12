@@ -1,7 +1,7 @@
-import os
+# import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-# from flask_bcrypt import Bcrypt
+from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
 
@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///records.db'
 db = SQLAlchemy(app)
-# bcrypt = Bcrypt(app)
+bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'user.login'
 login_manager.login_message_category = 'info'
@@ -20,9 +20,9 @@ app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USER')
 app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASS')
 mail = Mail(app)
 
-from pitcher.people.routes import people
-from pitcher.posts.routes import posts
-from pitcher.main.routes import main
+from app.people.routes import people
+from app.posts.routes import posts
+from app.main.routes import main
 
 
 
