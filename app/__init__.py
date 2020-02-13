@@ -7,16 +7,15 @@ from flask_mail import Mail
 
 app = Flask(__name__)
 
-db = SQLAlchemy(app)
-bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'user.login'
 login_manager.login_message_category = 'info'
 
-app.config['SECRET_KEY'] = '05be4f8f478ca9ba4f40491dee332962'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+# app.config['SECRET_KEY'] = '05be4f8f478ca9ba4f40491dee332962'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://birgen:admin@localhost/pitch'
 
-
+db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
 
 app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
 app.config['MAIL_PORT'] = 587

@@ -3,7 +3,7 @@
   }
   
   a.article-title:hover {
-    color: #428bca;
+    color: #82a4c2;
     text-decoration: none;
   }
   
@@ -52,4 +52,7 @@
   
   .fa:hover {
     color: darkblue;
+  }
+  footer{
+    height:5vh;
   }
