@@ -25,9 +25,9 @@
       href="{{ url_for('static', filename='css/main.css') }}"
     />
     {% if title %}
-    <title>Moringa Pitch Project - {{title}}</title>
+    <title>Pitch Project - {{title}}</title>
     {% else %}
-    <title>Moringa Pitch Project</title>
+    <title>Pitch Project</title>
     {% endif %}
   </head>
   <body>
@@ -38,48 +38,44 @@
         <div class="col-md-8">
           {% with messages = get_flashed_messages(with_categories=true) %} {% if
           messages %} {% for category, message in messages %}
-          <div class="alert alert-{{ category }}">\q
+          <div class="alert alert-{{ category }}">
             {{ message }}
           </div>
           {% endfor %} {% endif %} {% endwith %} {% block content %}{% endblock
           content %}
         </div>
-        <div class="col-md-4 mt-3">
-          <div class="content-section card p-4">
-            <h3>Project Categories</h3>
-            <p class="text-muted">Trending Categories</p>
+          <div class="col-md-4 mt-3">
+            <div class="content-section card p-4">
+              <h3>Categories</h3>
+              <p class="text-muted">Categories</p>
 
-            <ul class="list-group">
-              <li class="list-group"><a href="">  
-                <li>Business</li>
-                <li>Technology</li>
-                <li>Engineering</li>
-                <li>Farming</li>
-                 <!-- <span
-                class="txt-rotate"
-                data-period="2000"
-                data-rotate='[ "Business", "Technology.", "Startups.", "Farming.", "Resource handling" ]'></span> -->
-              </a></li>
-            </ul>
+              <ul class="list-group">
+                <li class="list-group"><a href="">  
+                  <li>Business</li>
+                  <li>Technology</li>
+                  <li>Engineering</li>
+                  <li>Farming</li>
+                </a></li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-    </main>
-    <!-- Footer block  -->
-    {% block footer %} {% include 'footer.html' %} {% endblock %}
-    <!-- JQuery -->
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
-    ></script>
-    <!-- Bootstrap tooltips -->
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"
-    ></script>
-    <!-- Bootstrap core JavaScript -->
-    <script
-      type="text/javascript"
+      </main>
+      <!-- Footer block  -->
+      {% block footer %} {% include 'footer.html' %} {% endblock %}
+      <!-- JQuery -->
+      <script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+      ></script>
+      <!-- Bootstrap tooltips -->
+      <script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"
+      ></script>
+      <!-- Bootstrap core JavaScript -->
+      <script
+        type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"
     ></script>
     <!-- MDB core JavaScript -->
