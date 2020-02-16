@@ -1,6 +1,5 @@
 import os
 
-
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY')
     SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
@@ -14,6 +13,7 @@ class Config:
 @staticmethod
 def init_app(app)
     pass
+
 class ProdConfig(Config):
     '''
     Production  configuration child class
@@ -21,7 +21,7 @@ class ProdConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    SQLALCHEMY_DATABASE_URI = os.environ.get("")
 
 
 class DevConfig(Config):
