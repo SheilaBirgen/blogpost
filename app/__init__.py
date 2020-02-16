@@ -11,8 +11,8 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'user.login'
 login_manager.login_message_category = 'info'
 
-# app.config['SECRET_KEY'] = '05be4f8f478ca9ba4f40491dee332962'
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://birgen:admin@localhost/pitch'
+app.config['SECRET_KEY'] ='05be4f8f478ca9ba4f40491dee332962'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
