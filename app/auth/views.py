@@ -2,64 +2,44 @@ from flask import render_template,request, redirect, url_for
 from . import auth
 from app.models import User
 from flask_login import login_user,logout_user,current_user
+from .forms import RegistrationForm, LoginForm
+from .. import db
+from ..email import mail_message
+
 
 @auth.route("/login",methods=["GET","POST"])
 def login():
-    errors = []
-    if request.method == "POST":
-        form = request.form
-        username = form.get("username")
-        if not username:
-            errors.append("Must enter username")
-            return render_template("auth/login.html",errors=errors)
-        password = form.get("password")
-        if not password:
-            errors.append("Must enter password")
-            return render_template("auth/login.html",errors=errors)
-        user =  User.query.filter_by(username=username).first()
-        if not user:
-            errors.append("User with that username or password does not exist") 
-            return render_template("auth/login.html",errors=errors)
-        if not user.check_password(password):
-            errors.append("User with that username or password does not exist") 
-            render_template("auth/login.html",errors=errors)
-        login_user(user)
-        return redirect(url_for("main.home"))
+    login_form = LoginForm()
+    if login_form.validate_on_submit():
+        user = User.query.filter_by(email=login_form.email.data).first()
+        if user is not None and user.verify_password(login_form.password.data):
+            login_user(user, login_form.remember.data)
+            # next_page = request.args.get('next')
+            return redirect(request.args.get('next') or url_for('main.index'))
 
-    return render_template("auth/login.html",errors=errors)
+        flash('Invalid username or Password')
+
+    title = "login"
+    return render_template('auth/login.html', login_form=login_form, title=title)
 
 @auth.route("/register", methods=["POST","GET"])
 def register():
-    errors = []
-    if request.method == "POST":
-        form = request.form
-        username = form.get("username")
-        if not username:
-            errors.append("Must enter username")
-            return render_template("auth/register.html",errors=errors)
-        password = form.get("password")
-        if not password:
-            errors.append("Must enter password")
-            return render_template("auth/register.html",errors=errors)
-        password_confirm = form.get("password_confirm")
-        if not password_confirm:
-            errors.append("Must enter password confirm field")
-            return render_template("auth/register.html",errors=errors)
-        if password_confirm !=  password:
-            errors.append("Passwords do not match")
-            return render_template("auth/register.html",errors=errors)
-        user = User.query.filter_by(username=username).first()
-        if user:
-            errors.append("User with that username already exists")
-            return render_template("auth/register.html",errors=errors)
-        user = User(username=username)
-        user.set_password(password)
-        user.save()
-        return redirect(url_for("auth.login"))
-    return render_template("auth/register.html",errors=errors)
+  form = RegistrationForm()
+    if form.validate_on_submit():
+        user = User(email=form.email.data, username=form.username.data, password=form.password.data,)
+        db.session.add(user)
+        db.session.commit()
+        
+        flash(f'Account created for {form.username.data}! Please log in to review', 'success')
+        
+        mail_message("Welcome to Pitch app!","email/welcome_user",user.email,user=user)
+        
+        return redirect(url_for('auth.login'))
+        title = "New Account"
+    return render_template('auth/register.html', registration_form=form)
 
 
 @auth.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for("auth.login"))
+    return redirect(url_for("main.index"))
