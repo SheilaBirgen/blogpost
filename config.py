@@ -2,7 +2,7 @@ import os
 
 class Config:
     SECRET_KEY = os.environ.get("SECRET_KEY")
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://birgen:admin@localhost/pitch'
+    # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://birgen:admin@localhost/pitch'
     
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587
@@ -18,7 +18,7 @@ class Config:
     SIMPLEMDE_USE_CDN = True
     
 class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://vincent:Empharse333@localhost/pitch_test'
+    SQLALCHEMY_DATABASE_URI = 
 
 class ProdConfig(Config):
     '''

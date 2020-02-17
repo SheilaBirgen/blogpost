@@ -56,6 +56,8 @@ There are no known bugs at the moment
 ## Support and contact Details
 You can reach out to me through the github account SheilaBirgen
 or on my email as jeronobergen@gmail.com
+## CodeBeat Badge
+[![codebeat badge](https://codebeat.co/badges/8e5b0d4f-c18b-48c9-a83f-c36390d8d2bd)](https://codebeat.co/projects/github-com-sheilabirgen-blogpost-master)
 
 ## License
 |@2019 Sheila Birgen |
