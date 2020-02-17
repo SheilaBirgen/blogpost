@@ -18,7 +18,9 @@ class Config:
     SIMPLEMDE_USE_CDN = True
     
 class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 
+
+    pass
+
 
 class ProdConfig(Config):
     '''
