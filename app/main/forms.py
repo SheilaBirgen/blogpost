@@ -1,14 +1,14 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, TextAreaField
+from wtforms import StringField, SubmitField, TextAreaField,RadioField,SelectField
 from wtforms.validators import DataRequired
 
 class CommentsForm(FlaskForm):
-    comment = TextAreaField('Comment', validators=[Required()])
+    comment = TextAreaField('Comment', validators=[DataRequired()])
     vote=RadioField('default field arguments', choices=[('1', 'UpVote'), ('1', 'DownVote')])
     submit = SubmitField('SUBMIT')  
 
 class UpdateProfile(FlaskForm):
-    bio = TextAreaField('Tell us about you.',validators = [Required()])
+    bio = TextAreaField('Tell us about you.',validators = [DataRequired()])
     submit = SubmitField('Submit') 
 
 class PitchForm(FlaskForm):
