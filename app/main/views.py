@@ -7,7 +7,6 @@ from .. import db
 
 
 
-
 @main.route('/')
 def index():
     '''
@@ -15,10 +14,9 @@ def index():
     '''
     title = 'Home - Welcome to The best Pitching Website Online'
 
-    search_pitch = request.args.get('pitch_query')
-    pitches= Pitch.get_all_pitches()  
+    # search_pitch = request.args.get('pitch_query')
 
-    return render_template('index.html', title = title, pitches= pitches)
+    return render_template('index.html', title = title)
 
 #this section consist of the category root functions
 
@@ -190,4 +188,12 @@ def test(id):
     '''
     pitch =Pitch.query.filter_by(id=1).first()
     return render_template('test.html',pitch= pitch)
+
+
+@main.route('/all_pitches')  
+def get_all_pitches():
+    
+    pitches = Pitch.query.all()
+    
+    return render_template('pitches.html',pitches= pitches)
 

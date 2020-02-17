@@ -22,7 +22,7 @@ class User(db.Model,UserMixin):
     profile_pic_path = db.Column(db.String())
     password_hash = db.Column(db.String(255))
     pass_secure = db.Column(db.String(255))
-    pitch = db.relationship('Pitch',backref = 'users',lazy="dynamic")
+    # pitch = db.relationship('Pitch',backref = 'users',lazy="dynamic")
     
     
     def save_comment(self):
@@ -57,7 +57,7 @@ class Pitch(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     pitch = db.Column(db.String)
     category_id = db.Column(db.Integer)
-    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    # user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
     comments = db.relationship('Comment',backref = 'pitch',lazy="dynamic")
         
 
@@ -73,7 +73,9 @@ class Pitch(db.Model):
         '''
         Function that queries the databse and returns all the pitches
         '''
-        return Pitch.query.all()
+        pitches = Pitch.query.all()
+
+        return pitches
 
     @classmethod
     def get_pitches_by_category(cls,cat_id):

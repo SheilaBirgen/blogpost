@@ -1,7 +1,7 @@
 import os
 
 class Config:
-    SECRET_KEY = SECRET_KEY='05be4f8f478ca9ba4f40491dee332962'
+    SECRET_KEY = os.environ.get("SECRET_KEY")
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://birgen:admin@localhost/pitch'
     
     MAIL_SERVER = 'smtp.googlemail.com'
@@ -10,7 +10,7 @@ class Config:
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
     SUBJECT_PREFIX = 'One Minute Pitch'
-    SENDER_EMAIL = 'jeronobergen@gmail.com'
+    
 
 
     # simple mde  configurations
